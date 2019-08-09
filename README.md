@@ -1,14 +1,14 @@
-# animation_test1
+## animation_test1
 
 This project will be displaying the scrollable photo and perform stack view.
 
-##Future Function
--cloud storage(realtime database/cloud firestore)
--overlay show information(alertDialog/bottomModal)
--menu
--show textinput when pressed search go to another screen
+## Future Function
+-cloud storage(realtime database/cloud firestore)<br>
+-overlay show information(alertDialog/bottomModal)<br>
+-menu<br>
+-show textinput when pressed search go to another screen<br>
 
-##Screen and design of Application
+## Screen and design of Application
 <center>
 This is the first screen of the application.
 </center>

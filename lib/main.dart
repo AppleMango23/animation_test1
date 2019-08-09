@@ -17,8 +17,21 @@ var widgetAspectRatio = cardAspectRatio;
 
 class _MyAppState extends State<MyApp>{
   var currentPage = images.length - 1.0;
+  
 
-
+  snackbarFunction(BuildContext context){
+    final snackBar = SnackBar(
+      content: Text('Yay! A SnackBar!'),
+      action: SnackBarAction(
+        label: 'Undo',textColor: Colors.white,
+        onPressed: () {
+          // Some code to undo the change.
+        },
+      ),
+      backgroundColor: Color(0xFFff6e6e),
+      );
+    Scaffold.of(context).showSnackBar(snackBar);
+  }
   @override
   Widget build(BuildContext context){
   
@@ -31,7 +44,10 @@ class _MyAppState extends State<MyApp>{
 
     return Scaffold(
       backgroundColor:Color(0xFF2d3447),
-      body: SingleChildScrollView(
+      body: 
+        Builder(
+        builder: (context) => 
+        SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Padding(
@@ -54,7 +70,7 @@ class _MyAppState extends State<MyApp>{
                 color: Colors.white,
                 size: 30.0,
               ),
-              onPressed: (){},
+              onPressed:(){snackbarFunction(context);},
               )
             ],
             ),
@@ -122,7 +138,8 @@ class _MyAppState extends State<MyApp>{
           ],
           )
         ),
-      );
+        )
+    );
   }
 }
 
@@ -158,14 +175,16 @@ class CardScrollWidget extends StatelessWidget {
           bool isOnRight = delta > 0;
 
           var start = padding +
-              max(
-                  primaryCardLeft -
-                      horizontalInset * -delta * (isOnRight ? 15 : 1),
-                  0.0);
+            // Left
+            max(
+                primaryCardLeft -
+                    horizontalInset * -delta * (isOnRight ? 15 : 1),
+                0.0) - 45;
 
           var cardItem = Positioned.directional(
-            top: padding + verticalInset * max(-delta, 0.0),
-            bottom: padding + verticalInset * max(-delta, 0.0),
+            // Size of the photo
+            top: padding + verticalInset * max(-delta, 0.0)+20 ,
+            bottom: padding + verticalInset * max(-delta, 0.0)+20,
             start: start,
             textDirection: TextDirection.rtl,
             child: ClipRRect(
@@ -189,9 +208,8 @@ class CardScrollWidget extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            
                             SizedBox(
-                              height: 10.0,
+                              height: 20.0,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
